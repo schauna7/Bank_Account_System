@@ -23,21 +23,21 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter account number: ");
-                    String accNumber = scanner.nextLine();
-                    System.out.print("Enter account holder name: ");
-                    String accHolder = scanner.nextLine();
-                    System.out.print("Enter initial balance: ");
-                    double balance = scanner.nextDouble();
-                    scanner.nextLine(); // consume newline
+    System.out.print("Enter account holder name: ");
+    String accHolder = scanner.nextLine();
+    System.out.print("Enter initial balance: ");
+    double balance = scanner.nextDouble();
+    scanner.nextLine(); // consume newline
 
-                    try {
-                        bankService.createAccount(accNumber, accHolder, balance);
-                        System.out.println("Account created successfully!");
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
-                    break;
+    try {
+        BankAccount newAccount = bankService.createAccount(accHolder, balance);
+        System.out.println("Account created successfully!");
+        System.out.println("Your account number is: " + newAccount.getAccountNumber());
+    } catch (IllegalArgumentException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+    break;
+
 
                 case 2:
                     bankService.displayAllAccounts();

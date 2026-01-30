@@ -11,15 +11,15 @@ public class BankService {
         accounts = new ArrayList<>();
     }
 
-    // Create a new account
-    public BankAccount createAccount(String accountNumber, String accountHolderName, double initialBalance) {
-        // Check if account number already exists
-        if (findAccount(accountNumber) != null) {
-            throw new IllegalArgumentException("Account number already exists.");
+    // Create a new account (account number is generated automatically in BankAccount)
+    public BankAccount createAccount(String accountHolderName, double initialBalance) {
+        BankAccount newAccount = new BankAccount(accountHolderName, initialBalance);
+
+        // Ensure account number is unique (unlikely to collide, but just in case)
+        while (findAccount(newAccount.getAccountNumber()) != null) {
+            newAccount = new BankAccount(accountHolderName, initialBalance);
         }
 
-        // Create new BankAccount
-        BankAccount newAccount = new BankAccount(accountNumber, accountHolderName, initialBalance);
         accounts.add(newAccount);
         return newAccount;
     }
