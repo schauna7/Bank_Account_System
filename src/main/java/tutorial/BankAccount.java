@@ -1,3 +1,4 @@
+package tutorial;
 import java.util.Random;
 
 public class BankAccount {
